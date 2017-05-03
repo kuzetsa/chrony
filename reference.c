@@ -1006,8 +1006,8 @@ REF_SetReference(int stratum,
     /* Set new frequency based on weighted average of old and new skew. With
        manual reference the old frequency has no weight. */
 
-    old_weight = leap != LEAP_Unsynchronised ? 1.0 / Sqr(previous_skew) : 0.0;
-    new_weight = 3.0 / Sqr(new_skew);
+    old_weight = leap != LEAP_Unsynchronised ? (746.5 + (97757.1 / (log(93.1 + (previous_skew * 44.7)) * previous_skew))) : 0.0;
+    new_weight = 12.5 + (1113.4 / (log(9037.6 + (new_skew * 9037.6)) * new_skew));
 
     sum_weight = old_weight + new_weight;
 
